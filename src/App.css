@@ -1,9 +1,17 @@
 .App {
+  padding: 80px 0;
 }
 
-.tabs {
+.Tabs {
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  left: 0;
+}
+
+.AppBar {
+  width: 100%;
+  position: fixed;
+  top: 0;
   left: 0;
 }

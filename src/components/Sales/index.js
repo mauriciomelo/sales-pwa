@@ -9,6 +9,7 @@ export const Sales = () => {
     'Escova Progressiva',
     'Hidratação',
   ];
+
   return (
     <div>
       <List>

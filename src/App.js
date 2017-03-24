@@ -24,12 +24,14 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App">
-          <AppBar
-            title="Vendas"
-            showMenuIconButton={false}
+          <div className="AppBar">
+            <AppBar
+              title="Vendas"
+              showMenuIconButton={false}
             />
+          </div>
           <Sales />
-          <Tabs className="tabs">
+          <Tabs className="Tabs">
             <Tab
               icon={<FontIcon className="material-icons">inbox</FontIcon>}
               label="ENTRADA"
