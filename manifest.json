@@ -1,0 +1,15 @@
+{
+  "short_name": "Sales",
+  "name": "Sales",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#9c27b0",
+  "theme_color": "#9c27b0",
+  "start_url": "./",
+  "display": "standalone"
+}
