@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 
@@ -8,20 +9,14 @@ const handleClick = () => {
   }
 };
 
-const Sales = () => {
-  const items = [
-    'Corte M',
-    'Corte F',
-    'Escova Progressiva',
-    'Hidratação',
-  ];
+export const Sales = ({ sales = [] }) => {
 
   return (
     <div>
       <List>
         <Subheader>Mais vendido</Subheader>
-        { items.map(item => (
-          <ListItem primaryText={item} key={item} onClick={handleClick} />
+        { sales.map(sale => (
+          <ListItem primaryText={sale.label} key={sale.label} onClick={handleClick} />
         ))}
       </List>
 
@@ -29,4 +24,10 @@ const Sales = () => {
   );
 };
 
-export default Sales;
+const mapStateToProps = state => ({
+  sales: state.sales,
+});
+
+export default connect(
+  mapStateToProps,
+)(Sales);
