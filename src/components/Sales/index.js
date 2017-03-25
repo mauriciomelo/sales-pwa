@@ -14,13 +14,13 @@ export const Sales = ({ products = [], onSell }) => {
 
     onSell(product);
   };
-  
+
   return (
     <div>
       <List>
         <Subheader>Mais vendido</Subheader>
         { products.map(product => (
-          <ListItem primaryText={product.label} key={product.label} onClick={() => handleClick(product) } />
+          <ListItem secondaryText={`R$ ${product.price}`} primaryText={product.label} key={product.label} onClick={() => handleClick(product) } />
         ))}
       </List>
 
