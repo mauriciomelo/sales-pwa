@@ -7,14 +7,14 @@ let wrapper;
 describe('<Sales/>', () => {
 
   beforeEach(() => {
-    const sales = [
+    const products = [
       { label: 'Item' },
       { label: 'Item 2' },
     ];
-    wrapper = shallow(<Sales sales={sales} />);
+    wrapper = shallow(<Sales products={products} />);
   });
 
-  it('render sales', () => {
+  it('render products', () => {
     expect(wrapper.find(ListItem)).toHaveLength(2);
   });
 

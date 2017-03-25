@@ -9,13 +9,13 @@ const handleClick = () => {
   }
 };
 
-export const Sales = ({ sales = [] }) => {
+export const Sales = ({ products = [] }) => {
 
   return (
     <div>
       <List>
         <Subheader>Mais vendido</Subheader>
-        { sales.map(sale => (
+        { products.map(sale => (
           <ListItem primaryText={sale.label} key={sale.label} onClick={handleClick} />
         ))}
       </List>
@@ -25,7 +25,7 @@ export const Sales = ({ sales = [] }) => {
 };
 
 const mapStateToProps = state => ({
-  sales: state.sales,
+  products: state.products,
 });
 
 export default connect(

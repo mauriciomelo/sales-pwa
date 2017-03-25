@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
@@ -9,7 +9,6 @@ import { Provider } from 'react-redux';
 import state from './state';
 
 import './App.css';
-import Sales from './components/Sales';
 import { purple500 } from 'material-ui/styles/colors';
 
 const muiTheme = getMuiTheme({
@@ -22,38 +21,38 @@ const muiTheme = getMuiTheme({
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={state}>
-        <MuiThemeProvider muiTheme={muiTheme}>
-          <div className="App">
-            <div className="AppBar">
-              <AppBar
-                title="Vendas"
-                showMenuIconButton={false}
-                />
-            </div>
-            <Sales />
-            <Tabs className="Tabs">
-              <Tab
-                icon={<FontIcon className="material-icons">inbox</FontIcon>}
-                label="ENTRADA"
-                />
-              <Tab
-                icon={<FontIcon className="material-icons">arrow_upward</FontIcon>}
-                label="SAÍDA"
-                />
-              <Tab
-                icon={<FontIcon className="material-icons">history</FontIcon>}
-                label="HISTÓRICO"
-                />
-            </Tabs>
+const App = (props) => {
+  const goToVisualizations = () => props.router.push('/visualization');
+  const goToSales = () => props.router.push('/');
+
+  return (
+    <Provider store={state}>
+      <MuiThemeProvider muiTheme={muiTheme}>
+
+        <div className="App">
+          <div className="AppBar">
+            <AppBar
+              title="Vendas"
+              showMenuIconButton={false}
+              />
           </div>
-        </MuiThemeProvider>
-      </Provider>
-    );
-  }
-}
+          { props.children }
+          <Tabs className="Tabs">
+            <Tab
+              icon={<FontIcon className="material-icons">inbox</FontIcon>}
+              label="ENTRADA"
+              onClick={goToSales}
+            />
+            <Tab
+              icon={<FontIcon className="material-icons">insert_chart</FontIcon>}
+              label="VISUALIZAÇÃO"
+              onClick={goToVisualizations}
+            />
+          </Tabs>
+        </div>
+      </MuiThemeProvider>
+    </Provider>
+  );
+};
 
 export default App;
