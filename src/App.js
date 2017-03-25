@@ -5,7 +5,7 @@ import AppBar from 'material-ui/AppBar';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import FontIcon from 'material-ui/FontIcon';
 import './App.css';
-import { Sales } from './components/Sales';
+import Sales from './components/Sales';
 import { purple500 } from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
