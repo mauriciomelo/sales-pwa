@@ -4,14 +4,17 @@ import { Sales } from './index';
 import { ListItem } from 'material-ui/List';
 
 let wrapper;
+let onSellMock;
+let products;
 describe('<Sales/>', () => {
 
   beforeEach(() => {
-    const products = [
-      { label: 'Item' },
-      { label: 'Item 2' },
+    products = [
+      { label: 'Item', price: 10 },
+      { label: 'Item 2', price: 20 },
     ];
-    wrapper = shallow(<Sales products={products} />);
+    onSellMock = jest.fn();
+    wrapper = shallow(<Sales onSell={onSellMock} products={products} />);
   });
 
   it('render products', () => {
@@ -23,6 +26,11 @@ describe('<Sales/>', () => {
       navigator.vibrate = jest.fn();
       wrapper.find(ListItem).first().simulate('click');
       expect(navigator.vibrate).toBeCalledWith(50);
+    });
+
+    it('calls onSell with product', () => {
+      wrapper.find(ListItem).first().simulate('click');
+      expect(onSellMock).toBeCalledWith(products[0]);
     });
 
     it('does NOT crash when navigator does not support the vibrate API', () => {

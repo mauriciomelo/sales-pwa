@@ -2,21 +2,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
+import { sell } from '../../state/sales';
 
-const handleClick = () => {
-  if ('vibrate' in navigator) {
-    navigator.vibrate(50);
-  }
-};
 
-export const Sales = ({ products = [] }) => {
 
+export const Sales = ({ products = [], onSell }) => {
+  const handleClick = (product) => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(50);
+    }
+
+    onSell(product);
+  };
+  
   return (
     <div>
       <List>
         <Subheader>Mais vendido</Subheader>
-        { products.map(sale => (
-          <ListItem primaryText={sale.label} key={sale.label} onClick={handleClick} />
+        { products.map(product => (
+          <ListItem primaryText={product.label} key={product.label} onClick={() => handleClick(product) } />
         ))}
       </List>
 
@@ -28,6 +32,13 @@ const mapStateToProps = state => ({
   products: state.products,
 });
 
+const mapDispatchToProps = dispatch => ({
+  onSell: (item) => {
+    dispatch(sell(item));
+  },
+});
+
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(Sales);
